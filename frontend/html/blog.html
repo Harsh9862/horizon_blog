@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Blog — Explore</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../css/blog.css"/>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">H<span>O</span>RIZON</div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link active" href="blog.html">Explore</a>
+    <a class="nav-link" href="write.html">Write</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE ─── -->
+<div id="page-blog">
+
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div>
+      <div class="page-tag">All Stories</div>
+      <h1>Explore the <em>horizon</em><br/>of thoughts.</h1>
+      <p>Curated writing from curious minds — perspectives that challenge, inspire, and illuminate.</p>
+    </div>
+    <div class="post-count-badge">48</div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="search-input" type="text" placeholder="Search stories…" id="searchInput"/>
+    </div>
+
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="Philosophy">Philosophy</button>
+      <button class="pill" data-filter="Technology">Technology</button>
+      <button class="pill" data-filter="Science">Science</button>
+      <button class="pill" data-filter="Culture">Culture</button>
+      <button class="pill" data-filter="Nature">Nature</button>
+      <button class="pill" data-filter="Psychology">Psychology</button>
+    </div>
+
+    <select class="sort-select">
+      <option>Latest</option>
+      <option>Most Read</option>
+      <option>Trending</option>
+    </select>
+  </div>
+
+  <!-- BLOG LAYOUT -->
+  <div class="blog-layout">
+
+    <!-- ─── LEFT COLUMN ─── -->
+    <div>
+
+      <!-- FEATURED POST -->
+      <div class="featured-post">
+        <span class="featured-label">Featured</span>
+        <span class="post-tag">Philosophy</span>
+        <h2>The Expanding Universe of Human Consciousness</h2>
+        <p>We stand at the precipice of a new understanding — where neuroscience, philosophy, and lived experience converge into something profoundly new.</p>
+        <div class="post-meta">
+          <div class="avatar">AR</div>
+          <span>Aryan Mehta</span>
+          <div class="dot"></div>
+          <span>8 min read</span>
+          <div class="dot"></div>
+          <span>Mar 9, 2026</span>
+          <div class="dot"></div>
+          <span>3.1k reads</span>
+        </div>
+        <div class="read-more">Read Story →</div>
+      </div>
+
+      <!-- RESULTS COUNT -->
+      <div class="results-row">
+        <div class="results-count">Showing <strong id="countDisplay">8</strong> of 48 stories</div>
+      </div>
+
+      <!-- POSTS LIST -->
+      <div class="posts-list" id="postsList">
+
+        <div class="post-row" data-category="Technology">
+          <div class="post-row-num">01</div>
+          <div class="post-row-thumb thumb-a"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">Building with AI: A Human's Perspective</div>
+            <div class="post-row-meta">Sana Khan · 5 min read · Mar 10, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Technology</span>
+            <div class="post-row-stats"><span>♡ 312</span><span>◎ 1.8k</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Science">
+          <div class="post-row-num">02</div>
+          <div class="post-row-thumb thumb-b"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">Dark Matter & the Stories We Tell About the Unknown</div>
+            <div class="post-row-meta">Rohan V. · 6 min read · Mar 9, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Science</span>
+            <div class="post-row-stats"><span>♡ 198</span><span>◎ 2.4k</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Culture">
+          <div class="post-row-num">03</div>
+          <div class="post-row-thumb thumb-c"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">The Quiet Revolution of Slow Reading</div>
+            <div class="post-row-meta">Priya R. · 4 min read · Mar 10, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag green">Culture</span>
+            <div class="post-row-stats"><span>♡ 241</span><span>◎ 743</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Nature">
+          <div class="post-row-num">04</div>
+          <div class="post-row-thumb thumb-d"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">Notes from a Climate Skeptic Turned Believer</div>
+            <div class="post-row-meta">Dev S. · 7 min read · Mar 8, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag green">Nature</span>
+            <div class="post-row-stats"><span>♡ 512</span><span>◎ 3.4k</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Technology">
+          <div class="post-row-num">05</div>
+          <div class="post-row-thumb thumb-e"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">What Coding Taught Me About Writing</div>
+            <div class="post-row-meta">Aisha M. · 3 min read · Mar 7, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Technology</span>
+            <div class="post-row-stats"><span>♡ 178</span><span>◎ 1.1k</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Psychology">
+          <div class="post-row-num">06</div>
+          <div class="post-row-thumb thumb-f"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">In Defense of Daydreaming</div>
+            <div class="post-row-meta">Vikram P. · 5 min read · Mar 6, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Psychology</span>
+            <div class="post-row-stats"><span>♡ 289</span><span>◎ 892</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Culture">
+          <div class="post-row-num">07</div>
+          <div class="post-row-thumb thumb-g"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">The Architecture of Ancient Indian Cities</div>
+            <div class="post-row-meta">Nalini K. · 9 min read · Mar 5, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag green">Culture</span>
+            <div class="post-row-stats"><span>♡ 421</span><span>◎ 2.7k</span></div>
+          </div>
+        </div>
+
+        <div class="post-row" data-category="Science">
+          <div class="post-row-num">08</div>
+          <div class="post-row-thumb thumb-h"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">Mapping the Silence Between Stars</div>
+            <div class="post-row-meta">James O. · 5 min read · Mar 4, 2026</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Science</span>
+            <div class="post-row-stats"><span>♡ 374</span><span>◎ 2.1k</span></div>
+          </div>
+        </div>
+
+      </div><!-- /posts-list -->
+
+      <!-- PAGINATION -->
+      <div class="pagination">
+        <button class="page-btn arrow">‹</button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">…</button>
+        <button class="page-btn">6</button>
+        <button class="page-btn arrow">›</button>
+      </div>
+
+    </div><!-- /left column -->
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar">
+
+      <div class="sidebar-card newsletter-card">
+        <h3>Stay on the Horizon</h3>
+        <p>New stories, no noise. Delivered to your inbox every week.</p>
+        <input class="newsletter-input" type="email" placeholder="your@email.com"/>
+        <button class="btn-subscribe">Subscribe</button>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Trending This Week</div>
+        <div class="trending-list">
+          <div class="trending-item">
+            <span class="trending-num">01</span>
+            <div class="trending-text">
+              <h4>Notes from a Climate Skeptic Turned Believer</h4>
+              <span>3.4k reads</span>
+            </div>
+          </div>
+          <div class="trending-item">
+            <span class="trending-num">02</span>
+            <div class="trending-text">
+              <h4>The Expanding Universe of Human Consciousness</h4>
+              <span>3.1k reads</span>
+            </div>
+          </div>
+          <div class="trending-item">
+            <span class="trending-num">03</span>
+            <div class="trending-text">
+              <h4>The Architecture of Ancient Indian Cities</h4>
+              <span>2.7k reads</span>
+            </div>
+          </div>
+          <div class="trending-item">
+            <span class="trending-num">04</span>
+            <div class="trending-text">
+              <h4>Mapping the Silence Between Stars</h4>
+              <span>2.1k reads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Browse Tags</div>
+        <div class="tag-cloud">
+          <span class="tag">Philosophy</span>
+          <span class="tag">Technology</span>
+          <span class="tag">Science</span>
+          <span class="tag">Culture</span>
+          <span class="tag">Nature</span>
+          <span class="tag">Psychology</span>
+          <span class="tag">History</span>
+          <span class="tag">Writing</span>
+          <span class="tag">Environment</span>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /blog-layout -->
+
+</div><!-- /page-blog -->
+
+<!-- Scripts -->
+<script src="../js/blog.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — Horizon Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/dashboard.css"/>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">H<span>O</span>RIZON</div>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="blog.html">Explore</a>
+    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<!-- ─── PAGE ─── -->
+<div id="page-dashboard">
+
+  <!-- PROFILE HEADER -->
+  <div class="profile-header">
+    <div class="profile-header-inner">
+      <div class="profile-avatar">AR</div>
+      <div class="profile-info">
+        <div class="profile-name">Aryan Mehta</div>
+        <div class="profile-handle">@aryan · Member since Jan 2025</div>
+        <div class="profile-bio">Writer at the intersection of science, philosophy, and lived experience.</div>
+      </div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-num">24</div><div class="pstat-label">Stories</div></div>
+        <div class="pstat"><div class="pstat-num">12.4k</div><div class="pstat-label">Readers</div></div>
+        <div class="pstat"><div class="pstat-num">3.1k</div><div class="pstat-label">Likes</div></div>
+        <div class="pstat"><div class="pstat-num">98%</div><div class="pstat-label">Completion</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD LAYOUT -->
+  <div class="dash-layout">
+
+    <!-- ─── LEFT NAV ─── -->
+    <aside class="dash-nav">
+      <button class="dash-nav-item active" data-tab="posts">
+        <span class="dash-nav-icon">≡</span> My Posts
+      </button>
+      <button class="dash-nav-item" data-tab="analytics">
+        <span class="dash-nav-icon">◎</span> Analytics
+      </button>
+      <button class="dash-nav-item" data-tab="drafts">
+        <span class="dash-nav-icon">✎</span> Drafts
+        <span class="badge">2</span>
+      </button>
+      <button class="dash-nav-item" data-tab="bookmarks">
+        <span class="dash-nav-icon">⊹</span> Bookmarks
+      </button>
+      <div class="dash-nav-divider"></div>
+      <button class="dash-nav-item" data-tab="settings">
+        <span class="dash-nav-icon">⚙</span> Settings
+      </button>
+    </aside>
+
+    <!-- ─── MAIN CONTENT ─── -->
+    <main class="dash-main">
+
+      <!-- ── TAB: MY POSTS ── -->
+      <div class="tab-panel active" id="tab-posts">
+        <div class="panel-header">
+          <h2>My Posts</h2>
+          <a href="write.html" class="btn-primary">+ New Post</a>
+        </div>
+
+        <!-- Filter row -->
+        <div class="posts-filter">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="published">Published</button>
+          <button class="filter-pill" data-filter="draft">Drafts</button>
+        </div>
+
+        <!-- Posts table -->
+        <div class="posts-table">
+
+          <div class="posts-table-head">
+            <span>Story</span>
+            <span>Status</span>
+            <span>Views</span>
+            <span>Likes</span>
+            <span>Date</span>
+            <span></span>
+          </div>
+
+          <div class="post-row-dash" data-status="published">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-b"></div>
+              <div>
+                <div class="post-row-title">The Expanding Universe of Human Consciousness</div>
+                <div class="post-row-cat">Philosophy</div>
+              </div>
+            </div>
+            <span class="status-badge published">Published</span>
+            <span class="post-stat">3,142</span>
+            <span class="post-stat">142</span>
+            <span class="post-date">Mar 9, 2026</span>
+            <div class="post-row-actions">
+              <button class="row-btn" title="Edit">✎</button>
+              <button class="row-btn" title="View">↗</button>
+              <button class="row-btn danger" title="Delete">✕</button>
+            </div>
+          </div>
+
+          <div class="post-row-dash" data-status="published">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-e"></div>
+              <div>
+                <div class="post-row-title">The Illusion of Rational Choice</div>
+                <div class="post-row-cat">Philosophy</div>
+              </div>
+            </div>
+            <span class="status-badge published">Published</span>
+            <span class="post-stat">1,876</span>
+            <span class="post-stat">98</span>
+            <span class="post-date">Feb 22, 2026</span>
+            <div class="post-row-actions">
+              <button class="row-btn">✎</button>
+              <button class="row-btn">↗</button>
+              <button class="row-btn danger">✕</button>
+            </div>
+          </div>
+
+          <div class="post-row-dash" data-status="published">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-g"></div>
+              <div>
+                <div class="post-row-title">Stoicism in the Age of Algorithms</div>
+                <div class="post-row-cat">Philosophy · Technology</div>
+              </div>
+            </div>
+            <span class="status-badge published">Published</span>
+            <span class="post-stat">2,410</span>
+            <span class="post-stat">211</span>
+            <span class="post-date">Feb 10, 2026</span>
+            <div class="post-row-actions">
+              <button class="row-btn">✎</button>
+              <button class="row-btn">↗</button>
+              <button class="row-btn danger">✕</button>
+            </div>
+          </div>
+
+          <div class="post-row-dash" data-status="draft">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-a"></div>
+              <div>
+                <div class="post-row-title">What Silence Teaches Us</div>
+                <div class="post-row-cat">Psychology</div>
+              </div>
+            </div>
+            <span class="status-badge draft">Draft</span>
+            <span class="post-stat">—</span>
+            <span class="post-stat">—</span>
+            <span class="post-date">Mar 12, 2026</span>
+            <div class="post-row-actions">
+              <button class="row-btn">✎</button>
+              <button class="row-btn danger">✕</button>
+            </div>
+          </div>
+
+          <div class="post-row-dash" data-status="draft">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-c"></div>
+              <div>
+                <div class="post-row-title">The Geometry of Memory</div>
+                <div class="post-row-cat">Science</div>
+              </div>
+            </div>
+            <span class="status-badge draft">Draft</span>
+            <span class="post-stat">—</span>
+            <span class="post-stat">—</span>
+            <span class="post-date">Mar 1, 2026</span>
+            <div class="post-row-actions">
+              <button class="row-btn">✎</button>
+              <button class="row-btn danger">✕</button>
+            </div>
+          </div>
+
+        </div><!-- /posts-table -->
+      </div>
+
+      <!-- ── TAB: ANALYTICS ── -->
+      <div class="tab-panel" id="tab-analytics">
+        <div class="panel-header"><h2>Analytics</h2></div>
+
+        <!-- Summary cards -->
+        <div class="analytics-cards">
+          <div class="analytics-card">
+            <div class="ac-label">Total Views</div>
+            <div class="ac-num">18,429</div>
+            <div class="ac-change positive">+12% this month</div>
+          </div>
+          <div class="analytics-card">
+            <div class="ac-label">Total Likes</div>
+            <div class="ac-num">1,243</div>
+            <div class="ac-change positive">+8% this month</div>
+          </div>
+          <div class="analytics-card">
+            <div class="ac-label">New Followers</div>
+            <div class="ac-num">347</div>
+            <div class="ac-change positive">+23% this month</div>
+          </div>
+          <div class="analytics-card">
+            <div class="ac-label">Avg. Read Time</div>
+            <div class="ac-num">4.2m</div>
+            <div class="ac-change neutral">Same as last month</div>
+          </div>
+        </div>
+
+        <!-- Bar chart (CSS-based) -->
+        <div class="chart-card">
+          <div class="chart-header">
+            <div class="chart-title">Views — Last 7 Days</div>
+          </div>
+          <div class="bar-chart">
+            <div class="bar-group"><div class="bar" style="--h:45%"></div><span>Mon</span></div>
+            <div class="bar-group"><div class="bar" style="--h:62%"></div><span>Tue</span></div>
+            <div class="bar-group"><div class="bar" style="--h:38%"></div><span>Wed</span></div>
+            <div class="bar-group"><div class="bar" style="--h:80%"></div><span>Thu</span></div>
+            <div class="bar-group"><div class="bar" style="--h:55%"></div><span>Fri</span></div>
+            <div class="bar-group"><div class="bar" style="--h:92%"></div><span>Sat</span></div>
+            <div class="bar-group"><div class="bar" style="--h:70%"></div><span>Sun</span></div>
+          </div>
+        </div>
+
+        <!-- Top posts -->
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Top Performing Posts</div></div>
+          <div class="top-posts">
+            <div class="top-post-row">
+              <span class="top-num">01</span>
+              <span class="top-title">The Expanding Universe of Human Consciousness</span>
+              <span class="top-views">3,142 views</span>
+            </div>
+            <div class="top-post-row">
+              <span class="top-num">02</span>
+              <span class="top-title">Stoicism in the Age of Algorithms</span>
+              <span class="top-views">2,410 views</span>
+            </div>
+            <div class="top-post-row">
+              <span class="top-num">03</span>
+              <span class="top-title">The Illusion of Rational Choice</span>
+              <span class="top-views">1,876 views</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: DRAFTS ── -->
+      <div class="tab-panel" id="tab-drafts">
+        <div class="panel-header">
+          <h2>Drafts</h2>
+          <a href="write.html" class="btn-primary">+ New Post</a>
+        </div>
+        <div class="drafts-grid">
+          <div class="draft-card">
+            <div class="draft-thumb thumb-a"></div>
+            <div class="draft-body">
+              <div class="draft-title">What Silence Teaches Us</div>
+              <div class="draft-excerpt">The loudest lessons are often learned in the quietest moments. A meditation on stillness, attention, and…</div>
+              <div class="draft-meta">Psychology · Last edited Mar 12, 2026</div>
+            </div>
+            <div class="draft-actions">
+              <a href="write.html" class="btn-primary" style="font-size:0.72rem;padding:7px 16px">Continue →</a>
+              <button class="btn-ghost" style="font-size:0.72rem;padding:7px 14px">Delete</button>
+            </div>
+          </div>
+          <div class="draft-card">
+            <div class="draft-thumb thumb-c"></div>
+            <div class="draft-body">
+              <div class="draft-title">The Geometry of Memory</div>
+              <div class="draft-excerpt">Memory is not a filing cabinet. It is closer to a landscape — shifting, textured, subject to erosion and…</div>
+              <div class="draft-meta">Science · Last edited Mar 1, 2026</div>
+            </div>
+            <div class="draft-actions">
+              <a href="write.html" class="btn-primary" style="font-size:0.72rem;padding:7px 16px">Continue →</a>
+              <button class="btn-ghost" style="font-size:0.72rem;padding:7px 14px">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: BOOKMARKS ── -->
+      <div class="tab-panel" id="tab-bookmarks">
+        <div class="panel-header"><h2>Bookmarks</h2></div>
+        <div class="posts-table">
+          <div class="posts-table-head">
+            <span>Story</span><span>Author</span><span>Category</span><span>Saved</span><span></span>
+          </div>
+          <div class="post-row-dash">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-b"></div>
+              <div><div class="post-row-title">Notes from a Climate Skeptic Turned Believer</div></div>
+            </div>
+            <span class="post-date">Dev S.</span>
+            <span class="status-badge published">Nature</span>
+            <span class="post-date">Mar 8, 2026</span>
+            <div class="post-row-actions"><button class="row-btn danger" title="Remove">✕</button></div>
+          </div>
+          <div class="post-row-dash">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-g"></div>
+              <div><div class="post-row-title">The Architecture of Ancient Indian Cities</div></div>
+            </div>
+            <span class="post-date">Nalini K.</span>
+            <span class="status-badge published">Culture</span>
+            <span class="post-date">Mar 5, 2026</span>
+            <div class="post-row-actions"><button class="row-btn danger">✕</button></div>
+          </div>
+          <div class="post-row-dash">
+            <div class="post-row-info">
+              <div class="post-row-thumb thumb-e"></div>
+              <div><div class="post-row-title">Mapping the Silence Between Stars</div></div>
+            </div>
+            <span class="post-date">James O.</span>
+            <span class="status-badge published">Science</span>
+            <span class="post-date">Mar 4, 2026</span>
+            <div class="post-row-actions"><button class="row-btn danger">✕</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TAB: SETTINGS ── -->
+      <div class="tab-panel" id="tab-settings">
+        <div class="panel-header"><h2>Settings</h2></div>
+        <div class="settings-grid">
+
+          <div class="settings-card">
+            <div class="settings-section-title">Profile</div>
+            <div class="settings-field">
+              <label>Display Name</label>
+              <input type="text" class="settings-input" value="Aryan Mehta"/>
+            </div>
+            <div class="settings-field">
+              <label>Username</label>
+              <input type="text" class="settings-input" value="@aryan"/>
+            </div>
+            <div class="settings-field">
+              <label>Bio</label>
+              <textarea class="settings-input settings-textarea">Writer at the intersection of science, philosophy, and lived experience. Based in Mumbai.</textarea>
+            </div>
+            <button class="btn-primary" style="margin-top:4px">Save Changes</button>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-section-title">Notifications</div>
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <div class="toggle-label">New followers</div>
+                <div class="toggle-desc">Get notified when someone follows you</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <div class="toggle-label">Story likes</div>
+                <div class="toggle-desc">Get notified when someone likes your post</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info">
+                <div class="toggle-label">Weekly digest</div>
+                <div class="toggle-desc">A weekly summary of your performance</div>
+              </div>
+              <label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main><!-- /dash-main -->
+
+  </div><!-- /dash-layout -->
+
+</div><!-- /page-dashboard -->
+
+<script src="../js/dashboard.js"></script>
+</body>
+</html>

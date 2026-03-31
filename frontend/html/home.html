@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Horizon Blog — Home</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+
+<link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="home.html" class="nav-logo">H<span>O</span>RIZON</a>
+  <div class="nav-links">
+    <a class="nav-link active" href="home.html">Home</a>
+    <a class="nav-link" href="blog.html">Explore</a>
+    <a class="nav-link" href="write.html">Write</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-tag">✦ A Space for Thinkers</div>
+    <h1>Where <em>Ideas</em><br/>Meet the Horizon</h1>
+    <p class="hero-sub">Explore long-form thinking, deep stories, and perspectives that shift the way you see the world.</p>
+    <div class="hero-actions">
+      <button class="btn-primary">Explore Writing</button>
+      <button class="btn-ghost">Start Writing</button>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">2.4K</div><div class="stat-label">Stories</div></div>
+    <div class="stat"><div class="stat-num">840</div><div class="stat-label">Writers</div></div>
+    <div class="stat"><div class="stat-num">120K</div><div class="stat-label">Readers</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-label">Satisfaction</div></div>
+  </div>
+
+  <!-- FEATURED -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Featured</h2>
+      <a class="section-link" href="blog_slug.html">View all →</a>
+    </div>
+    <div class="featured-grid">
+      <div class="post-card featured">
+        <span class="post-tag">Philosophy</span>
+        <h3 class="post-title">The Expanding Universe of Human Consciousness</h3>
+        <p class="post-excerpt">We stand at the precipice of a new understanding — where neuroscience, philosophy, and lived experience converge into something profoundly new.</p>
+        <div class="post-meta">
+          <div class="avatar">AR</div>
+          <span>Aryan Mehta</span>
+          <div class="dot"></div>
+          <span>8 min read</span>
+          <div class="dot"></div>
+          <span>Mar 9</span>
+        </div>
+      </div>
+      <div class="post-card">
+        <span class="post-tag">Technology</span>
+        <h3 class="post-title">Building with AI: A Human's Perspective</h3>
+        <p class="post-excerpt">Tools don't think for us — they reveal what we were already thinking.</p>
+        <div class="post-meta">
+          <div class="avatar">SK</div>
+          <span>Sana Khan</span>
+          <div class="dot"></div>
+          <span>5 min</span>
+        </div>
+      </div>
+      <div class="post-card">
+        <span class="post-tag" style="background:rgba(126,184,255,0.1);color:var(--accent2);border-color:rgba(126,184,255,0.2)">Science</span>
+        <h3 class="post-title">Dark Matter & the Stories We Tell About the Unknown</h3>
+        <p class="post-excerpt">Mystery isn't a flaw in science — it's the engine.</p>
+        <div class="post-meta">
+          <div class="avatar">RV</div>
+          <span>Rohan V.</span>
+          <div class="dot"></div>
+          <span>6 min</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT POSTS -->
+  <section class="section" style="padding-top:0">
+    <div class="section-header">
+      <h2 class="section-title">Recent Posts</h2>
+      <a class="section-link" href="blog.html">All posts →</a>
+    </div>
+    <div class="posts-list">
+      <div class="post-row">
+        <div class="post-row-num">01</div>
+        <div class="post-row-content">
+          <div class="post-row-title">The Quiet Revolution of Slow Reading</div>
+          <div class="post-row-meta">Priya R. · 4 min read · Mar 10</div>
+        </div>
+        <span class="post-row-tag">Culture</span>
+      </div>
+      <div class="post-row">
+        <div class="post-row-num">02</div>
+        <div class="post-row-content">
+          <div class="post-row-title">Notes from a Climate Skeptic Turned Believer</div>
+          <div class="post-row-meta">Dev S. · 7 min read · Mar 8</div>
+        </div>
+        <span class="post-row-tag">Environment</span>
+      </div>
+      <div class="post-row">
+        <div class="post-row-num">03</div>
+        <div class="post-row-content">
+          <div class="post-row-title">What Coding Taught Me About Writing</div>
+          <div class="post-row-meta">Aisha M. · 3 min read · Mar 7</div>
+        </div>
+        <span class="post-row-tag">Tech</span>
+      </div>
+      <div class="post-row">
+        <div class="post-row-num">04</div>
+        <div class="post-row-content">
+          <div class="post-row-title">In Defense of Daydreaming</div>
+          <div class="post-row-meta">Vikram P. · 5 min read · Mar 6</div>
+        </div>
+        <span class="post-row-tag">Psychology</span>
+      </div>
+      <div class="post-row">
+        <div class="post-row-num">05</div>
+        <div class="post-row-content">
+          <div class="post-row-title">The Architecture of Ancient Indian Cities</div>
+          <div class="post-row-meta">Nalini K. · 9 min read · Mar 5</div>
+        </div>
+        <span class="post-row-tag">History</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="../js/home.js"></script>
+</body>
+</html>

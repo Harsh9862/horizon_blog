@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>New Post — Horizon Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/write.css"/>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">H<span>O</span>RIZON</div>
+  <div class="nav-center">
+    <span class="draft-status" id="draftStatus">Draft saved</span>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost" id="previewBtn">Preview</button>
+    <button class="btn-primary" id="publishBtn">Publish →</button>
+    <a class="nav-link" href="dashboard.html">✕</a>
+  </div>
+</nav>
+
+<!-- ─── EDITOR PAGE ─── -->
+<div id="page-write">
+
+  <!-- COVER IMAGE ZONE -->
+  <div class="cover-zone" id="coverZone">
+    <div class="cover-placeholder" id="coverPlaceholder">
+      <div class="cover-icon">⊕</div>
+      <span>Add cover image</span>
+    </div>
+    <div class="cover-img" id="coverImg" style="display:none"></div>
+    <button class="cover-remove" id="coverRemove" style="display:none">✕ Remove</button>
+    <input type="file" id="coverInput" accept="image/*" style="display:none"/>
+  </div>
+
+  <!-- EDITOR AREA -->
+  <div class="editor-wrap">
+
+    <!-- META FIELDS -->
+    <div class="meta-fields">
+      <div class="category-select-wrap">
+        <select class="category-select" id="categorySelect">
+          <option value="" disabled selected>Select a category…</option>
+          <option>Philosophy</option>
+          <option>Technology</option>
+          <option>Science</option>
+          <option>Culture</option>
+          <option>Nature</option>
+          <option>Psychology</option>
+          <option>History</option>
+          <option>Writing</option>
+        </select>
+      </div>
+      <div class="tags-input-wrap">
+        <input type="text" class="tags-input" id="tagsInput" placeholder="Add tags (press Enter)…"/>
+        <div class="tags-list" id="tagsList"></div>
+      </div>
+    </div>
+
+    <!-- TITLE -->
+    <div
+      class="title-field"
+      id="titleField"
+      contenteditable="true"
+      data-placeholder="Your story title…"
+    ></div>
+
+    <!-- SUBTITLE -->
+    <div
+      class="subtitle-field"
+      id="subtitleField"
+      contenteditable="true"
+      data-placeholder="Write a compelling subtitle…"
+    ></div>
+
+    <!-- TOOLBAR -->
+    <div class="toolbar" id="toolbar">
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+        <button class="tool-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+        <button class="tool-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+        <button class="tool-btn" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="h2" title="Heading 2">H2</button>
+        <button class="tool-btn" data-cmd="h3" title="Heading 3">H3</button>
+        <button class="tool-btn" data-cmd="blockquote" title="Blockquote">"</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="insertUnorderedList" title="Bullet list">≡</button>
+        <button class="tool-btn" data-cmd="insertOrderedList" title="Numbered list">1.</button>
+        <button class="tool-btn" data-cmd="insertHorizontalRule" title="Divider">—</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="createLink" title="Add link">⌁</button>
+        <button class="tool-btn" data-cmd="removeFormat" title="Clear format">✕</button>
+      </div>
+      <div class="toolbar-spacer"></div>
+      <div class="word-count" id="wordCount">0 words</div>
+    </div>
+
+    <!-- BODY EDITOR -->
+    <div
+      class="body-editor"
+      id="bodyEditor"
+      contenteditable="true"
+      data-placeholder="Begin your story…"
+    ></div>
+
+  </div><!-- /editor-wrap -->
+
+</div><!-- /page-write -->
+
+<!-- PUBLISH MODAL -->
+<div class="modal-overlay" id="publishModal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Ready to publish?</h2>
+      <p>Review your story settings before going live.</p>
+    </div>
+
+    <div class="modal-preview">
+      <div class="modal-preview-img" id="modalPreviewImg"></div>
+      <div class="modal-preview-text">
+        <div class="modal-preview-title" id="modalTitle">Untitled</div>
+        <div class="modal-preview-sub" id="modalSubtitle">No subtitle</div>
+        <div class="modal-preview-meta" id="modalMeta">0 min read · Draft</div>
+      </div>
+    </div>
+
+    <div class="modal-field">
+      <label>Category</label>
+      <select class="modal-select" id="modalCategory">
+        <option value="" disabled selected>Select…</option>
+        <option>Philosophy</option>
+        <option>Technology</option>
+        <option>Science</option>
+        <option>Culture</option>
+        <option>Nature</option>
+        <option>Psychology</option>
+        <option>History</option>
+        <option>Writing</option>
+      </select>
+    </div>
+
+    <div class="modal-field">
+      <label>Visibility</label>
+      <div class="visibility-options">
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="public" checked/>
+          <span>Public</span>
+        </label>
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="members"/>
+          <span>Members only</span>
+        </label>
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="private"/>
+          <span>Private</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelPublish">Cancel</button>
+      <button class="btn-primary" id="confirmPublish">Publish now</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/write.js"></script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+:root {
+  --space: #030712;
+  --deep: #0a0f1e;
+  --glass: rgba(255,255,255,0.05);
+  --glass-border: rgba(255,255,255,0.1);
+  --glass-hover: rgba(255,255,255,0.08);
+  --accent: #4fffb0;
+  --accent2: #7eb8ff;
+  --text: #e8edf5;
+  --muted: rgba(232,237,245,0.45);
+  --card-shadow: 0 8px 48px rgba(0,0,0,0.6);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--space);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── STARFIELD ─── */
+#stars-canvas {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+}
+
+/* ─── AURORA — updated to match blog page balance ─── */
+.aurora {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -20%, rgba(78,189,255,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(79,255,176,0.07) 0%, transparent 60%);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(3,7,18,0.7);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem; font-weight: 300; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--text);
+  cursor: pointer; transition: color 0.2s;
+  text-decoration: none;   /* removes underline */
+  color: inherit;          /* keeps original color */
+}
+.nav-logo span { color: var(--accent); }
+.nav-logo:hover { color: var(--accent2); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-link {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); cursor: pointer; transition: color 0.2s;
+  background: none; border: none; font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.nav-link:hover, .nav-link.active { color: var(--text); }
+
+/* nav-cta matches blog page pill/btn style exactly */
+.nav-cta {
+  background: var(--accent); color: #030712;
+  border: none; padding: 8px 20px; border-radius: 100px;
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+  cursor: pointer; transition: all 0.2s; font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.nav-cta:hover { background: #fff; transform: translateY(-1px); }
+
+/* ─── HOME PAGE ─── */
+#page-home { padding-top: 80px; position: relative; z-index: 1; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 92vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center; padding: 80px 24px 60px;
+  position: relative;
+}
+
+/* tag pill — now matches blog page .page-tag exactly */
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--glass); border: 1px solid var(--glass-border);
+  padding: 6px 16px; border-radius: 100px;
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 32px;
+  animation: fadeUp 0.8s ease both;
+}
+.hero-tag::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent); animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.7); }
+}
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.2rem, 9vw, 7.5rem);
+  font-weight: 300; line-height: 1.0;
+  letter-spacing: -0.01em;
+  animation: fadeUp 0.9s 0.1s ease both;
+}
+/* em italic — matches blog h1 em color */
+.hero h1 em { font-style: italic; color: var(--accent2); }
+
+.hero-sub {
+  margin-top: 24px; font-size: 1.05rem; color: var(--muted);
+  max-width: 480px; line-height: 1.7;
+  animation: fadeUp 0.9s 0.2s ease both;
+}
+
+.hero-actions {
+  margin-top: 48px; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
+  animation: fadeUp 0.9s 0.3s ease both;
+}
+
+/* btn-primary matches blog .btn-subscribe / .nav-cta */
+.btn-primary {
+  background: var(--accent); color: #030712;
+  border: none; padding: 14px 32px; border-radius: 100px;
+  font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em;
+  cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+  text-decoration: none;
+}
+.btn-primary:hover { background: #fff; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(79,255,176,0.25); }
+
+/* btn-ghost matches blog filter pills at rest */
+.btn-ghost {
+  background: var(--glass); color: var(--text);
+  border: 1px solid var(--glass-border); padding: 14px 32px; border-radius: 100px;
+  font-size: 0.88rem; letter-spacing: 0.06em;
+  cursor: pointer; transition: all 0.25s; font-family: 'DM Sans', sans-serif;
+  backdrop-filter: blur(8px); text-decoration: none;
+}
+.btn-ghost:hover { background: var(--glass-hover); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+  animation: fadeUp 1s 0.5s ease both;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  /* gradient uses --accent to match blog accent color */
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ─── STATS ROW ─── */
+.stats-row {
+  display: flex; justify-content: center; gap: 0;
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  margin: 0 48px;
+  animation: fadeUp 1s 0.4s ease both;
+}
+.stat {
+  flex: 1; max-width: 200px; text-align: center;
+  padding: 28px 0; border-right: 1px solid var(--glass-border);
+}
+.stat:last-child { border-right: none; }
+/* stat numbers use --accent like blog sidebar trending numbers & post counts */
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem; font-weight: 300; color: var(--accent);
+}
+.stat-label {
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-top: 4px;
+}
+
+/* ─── SECTIONS ─── */
+.section { padding: 80px 48px; }
+.section-header {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 40px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem; font-weight: 300;
+}
+/* section link uses --accent matching blog .read-more and sidebar tag hover */
+.section-link {
+  font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--accent); cursor: pointer; border: none; background: none;
+  font-family: 'DM Sans', sans-serif; transition: color 0.2s; text-decoration: none;
+}
+.section-link:hover { color: var(--accent2); }
+
+/* ─── FEATURED GRID ─── */
+.featured-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+}
+
+.post-card {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px; padding: 32px;
+  cursor: pointer; transition: all 0.3s;
+  backdrop-filter: blur(12px);
+  position: relative; overflow: hidden;
+}
+.post-card::before {
+  content: ''; position: absolute; inset: 0;
+  /* shimmer uses --accent tint — matches blog card hover border */
+  background: linear-gradient(135deg, rgba(79,255,176,0.03) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.post-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.18);
+  box-shadow: var(--card-shadow);
+}
+.post-card:hover::before { opacity: 1; }
+
+.post-card.featured {
+  grid-row: span 2;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 460px;
+  background: linear-gradient(to top, rgba(3,7,18,0.95) 0%, rgba(3,7,18,0.4) 60%, transparent 100%),
+              url('https://images.unsplash.com/photo-1462331940025-496dfbfc7564?w=800&q=80') center/cover;
+  border: none;
+}
+.post-card.featured:hover { transform: translateY(-4px) scale(1.01); }
+
+/* post-tag — exact match to blog .post-tag */
+.post-tag {
+  display: inline-block; padding: 4px 12px; border-radius: 100px;
+  font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+  background: rgba(79,255,176,0.12); color: var(--accent);
+  border: 1px solid rgba(79,255,176,0.2); margin-bottom: 14px;
+}
+
+.post-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem; font-weight: 400; line-height: 1.25;
+  margin-bottom: 10px; transition: color 0.2s;
+}
+/* title hover → accent2 matches blog .post-row-title hover */
+.post-card:hover .post-title { color: var(--accent2); }
+.post-card.featured .post-title { font-size: 2rem; }
+
+.post-excerpt {
+  font-size: 0.88rem; color: var(--muted); line-height: 1.65;
+  margin-bottom: 20px; display: -webkit-box;
+  -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+/* post-meta — exact match to blog .post-meta */
+.post-meta {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.75rem; color: var(--muted);
+}
+.post-meta .avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  /* gradient uses both accent colors — matches blog avatars */
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; font-weight: 600; color: #030712;
+  flex-shrink: 0;
+}
+.post-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--muted); }
+
+/* ─── RECENT POSTS ─── */
+.posts-list { display: flex; flex-direction: column; gap: 2px; }
+
+.post-row {
+  display: flex; align-items: center; gap: 20px;
+  padding: 20px 24px; border-radius: 12px;
+  cursor: pointer; transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.post-row:hover {
+  background: var(--glass); border-color: var(--glass-border);
+  transform: translateX(4px);
+}
+
+.post-row-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem; color: var(--muted); width: 24px; flex-shrink: 0;
+}
+
+.post-row-content { flex: 1; }
+.post-row-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem; font-weight: 400; margin-bottom: 4px;
+  transition: color 0.2s;
+}
+/* hover → accent2 consistent with blog */
+.post-row:hover .post-row-title { color: var(--accent2); }
+.post-row-meta { font-size: 0.73rem; color: var(--muted); }
+
+/* post-row-tag — exact match to blog's blue variant */
+.post-row-tag {
+  font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 100px;
+  background: rgba(126,184,255,0.1); color: var(--accent2);
+  border: 1px solid rgba(126,184,255,0.2); flex-shrink: 0;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .section { padding: 60px 24px; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .post-card.featured { grid-row: auto; min-height: 320px; }
+  .stats-row { margin: 0 24px; }
+}

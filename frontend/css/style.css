@@ -1,0 +1,228 @@
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Base ── */
+body {
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #fff;
+  background-color: #0f172a;
+  overflow: hidden;
+}
+
+/* ── Animated Background ── */
+.bg-animate {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 110vw;
+  height: 110vh;
+  top: -5vh;
+  left: -5vw;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)),
+    url('../images/horizon.png');
+  background-size: cover;
+  background-position: center;
+  animation: moveBackground 25s infinite alternate ease-in-out;
+}
+
+@keyframes moveBackground {
+  from { transform: scale(1); }
+  to   { transform: scale(1.1); }
+}
+
+/* ── Layout ── */
+main {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2rem 1.5rem;
+}
+
+/* ── Header ── */
+header {
+  width: 100%;
+  text-align: center;
+  animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+header h1 {
+  font-size: 0.75rem;
+  letter-spacing: 0.6em;
+  text-transform: uppercase;
+  font-weight: 1000;
+  opacity: 0.1;
+}
+
+/* ── Card Wrapper ── */
+.card-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  animation: fadeInUp 0.8s ease 0.5s both;
+}
+
+/* ── Glass Card ── */
+.glass-card {
+  width: 100%;
+  max-width: 360px;
+  background: rgba(255, 255, 255, 0.185);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2.5rem;
+  padding: 2.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Card Header ── */
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.card-header h2 {
+  font-size: 1.875rem;
+  font-weight: 300;
+  letter-spacing: -0.025em;
+}
+
+.card-header p {
+  color: rgb(255, 255, 255);
+  font-size: 0.82rem;
+  margin-top: 0.77rem;
+}
+
+/* ── Form ── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgb(255, 255, 255);
+  margin-left: 0.25rem;
+}
+
+input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.632);
+}
+
+input:focus {
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Submit Button ── */
+.btn-submit {
+  width: 100%;
+  background: #fff;
+  color: #0f172a;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover  { background: #f1f5f9; }
+.btn-submit:active { transform: scale(0.95); }
+
+/* ── Sign In Link ── */
+.sign-in-text {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.sign-in-text a {
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.sign-in-text a:hover { color: #fff; }
+
+/* ── Footer ── */
+footer {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 1rem;
+  animation: fadeInUp 0.8s ease 0.8s both;
+}
+
+footer p {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.5rem;
+  opacity: 0.7;
+  letter-spacing: 0.025em;
+}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Responsive ── */
+@media (min-width: 768px) {
+  main    { padding: 3rem; }
+  footer p { font-size: 1.875rem; }
+}
