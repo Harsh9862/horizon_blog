@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horizon Blog – Sign In</title>
+  <title>Horizon Blog - Sign In</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/login.css">
 </head>
@@ -20,39 +20,36 @@
       <div class="glass-card">
         <div class="card-header">
           <h2>Sign In</h2>
-          <p> Capture your thoughts.</p>
+          <p>Continue reading, writing, and managing your stories.</p>
         </div>
 
         <form id="login-form">
           <div class="field">
-            <label for="username">Identity</label>
-            <input id="username" type="text" placeholder="Username">
+            <label for="username">Email</label>
+            <input id="username" type="email" placeholder="name@email.com" autocomplete="email">
           </div>
 
           <div class="field">
             <div class="field-row">
-              <label for="password">Access Key</label>
+              <label for="password">Password</label>
             </div>
-            <input id="password" type="password" placeholder="••••••••">
+            <input id="password" type="password" placeholder="Enter your password" autocomplete="current-password">
           </div>
 
-          <button type="submit" class="btn-submit">Begin Reading</button>
-
-          <div class="forgot-wrap">
-            <a href="#" class="forgot-link">Forgot your key?</a>
-          </div>
+          <button type="submit" class="btn-submit">Sign In</button>
         </form>
       </div>
     </div>
 
     <footer>
       <p class="join-text">
-        New here? <a href="register.html">Join the Field</a>
+        New here? <a href="register.html">Create an account</a>
       </p>
     </footer>
 
   </main>
 
+  <script src="../js/api.js"></script>
   <script src="../js/login.js"></script>
 </body>
 </html>

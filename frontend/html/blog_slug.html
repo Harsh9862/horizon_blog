@@ -3,27 +3,20 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Expanding Universe of Human Consciousness — Horizon Blog</title>
-
-  <!-- Fonts -->
+  <title>Horizon Blog Story</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
-
-  <!-- Styles -->
   <link rel="stylesheet" href="../css/blog_slug.css"/>
 </head>
 <body>
 
 <canvas id="stars-canvas"></canvas>
 <div class="aurora"></div>
-
-<!-- ─── READ PROGRESS BAR ─── -->
 <div class="progress-bar" id="progressBar"></div>
 
-<!-- ─── NAV ─── -->
 <nav>
-  <div class="nav-logo">H<span>O</span>RIZON</div>
+  <a class="nav-logo" href="home.html">H<span>O</span>RIZON</a>
   <div class="nav-links">
-    <a class="nav-link" href="index.html">Home</a>
+    <a class="nav-link" href="home.html">Home</a>
     <a class="nav-link" href="blog.html">Explore</a>
     <a class="nav-link" href="write.html">Write</a>
     <a class="nav-link" href="dashboard.html">Dashboard</a>
@@ -31,31 +24,28 @@
   </div>
 </nav>
 
-<!-- ─── PAGE ─── -->
 <div id="page-post">
-
-  <!-- HERO -->
   <div class="post-hero">
     <div class="post-hero-inner">
       <div class="breadcrumb">
         <a href="blog.html">Explore</a>
-        <span>›</span>
-        <span>Philosophy</span>
+        <span>&gt;</span>
+        <span id="breadcrumbCategory">Story</span>
       </div>
-      <span class="post-tag">Philosophy</span>
-      <h1>The Expanding Universe<br/>of <em>Human Consciousness</em></h1>
-      <p class="post-subtitle">We stand at the precipice of a new understanding — where neuroscience, philosophy, and lived experience converge into something profoundly new.</p>
+      <span class="post-tag" id="heroCategory">Story</span>
+      <h1 id="postTitle">Loading story...</h1>
+      <p class="post-subtitle" id="postSubtitle">Fetching the latest post content.</p>
 
       <div class="post-byline">
-        <div class="author-avatar">AR</div>
+        <div class="author-avatar" id="authorAvatar">HB</div>
         <div class="author-info">
-          <div class="author-name">Aryan Mehta</div>
-          <div class="author-meta">Mar 9, 2026 · 8 min read · 3.1k reads</div>
+          <div class="author-name" id="authorName">Horizon</div>
+          <div class="author-meta" id="authorMeta">Loading metadata...</div>
         </div>
         <div class="post-actions">
           <button class="action-btn" id="likeBtn" title="Like">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <span id="likeCount">142</span>
+            <span id="likeCount">0</span>
           </button>
           <button class="action-btn" id="bookmarkBtn" title="Bookmark">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
@@ -66,218 +56,75 @@
         </div>
       </div>
     </div>
-
-    <!-- Hero image -->
     <div class="post-hero-img">
-      <div class="hero-img-overlay"></div>
+      <div class="hero-img-overlay" id="heroImage"></div>
     </div>
   </div>
 
-  <!-- ─── CONTENT LAYOUT ─── -->
   <div class="post-layout">
-
-    <!-- LEFT: floating TOC -->
     <aside class="toc-sidebar" id="toc">
       <div class="toc-label">In this article</div>
-      <nav class="toc-list">
-        <a class="toc-item active" href="#intro">Introduction</a>
-        <a class="toc-item" href="#neuroscience">The Neuroscience Gap</a>
-        <a class="toc-item" href="#philosophy">Philosophy Catches Up</a>
-        <a class="toc-item" href="#lived">Lived Experience</a>
-        <a class="toc-item" href="#convergence">Where They Converge</a>
-        <a class="toc-item" href="#conclusion">A New Understanding</a>
-      </nav>
+      <nav class="toc-list" id="tocList"></nav>
       <div class="toc-progress">
         <div class="toc-progress-fill" id="tocProgress"></div>
       </div>
     </aside>
 
-    <!-- CENTER: article body -->
     <article class="post-body" id="articleBody">
-
-      <section id="intro">
-        <p class="lead">There is a peculiar vertigo that comes from staring too long at your own reflection — not the physical kind, but the cognitive kind. The moment you become aware of your awareness. The instant you think about your thinking.</p>
-
-        <p>For most of human history, this recursive loop was the domain of mystics and philosophers. Today, it sits squarely at the intersection of three converging fields: neuroscience, analytic philosophy of mind, and the growing body of first-person phenomenological research.</p>
-
-        <p>What emerges from that intersection is not a neat answer, but something far more interesting — a productive crisis. A beautiful uncertainty that is forcing us to rebuild our most fundamental assumptions about what it means to be a conscious being.</p>
-      </section>
-
-      <section id="neuroscience">
-        <h2>The Neuroscience Gap</h2>
-
-        <p>Neuroscience has made extraordinary strides in the past two decades. We can watch, in real time, as the brain lights up during fear, joy, creative thought, moral reasoning. We have mapped the connectome of small organisms. We understand the electrochemical dance of synapses with remarkable precision.</p>
-
-        <blockquote>
-          <p>"We have learned more about the brain in the last twenty years than in all of prior human history. And yet the hard problem remains as hard as ever."</p>
-          <cite>— David Chalmers, The Character of Consciousness</cite>
-        </blockquote>
-
-        <p>And yet. The "hard problem" — a term coined by philosopher David Chalmers in 1995 — refuses to yield. We can explain why certain neural patterns correlate with the experience of seeing red, or feeling grief. But we cannot explain <em>why there is something it is like</em> to have those experiences at all. Why doesn't all this information processing happen in the dark?</p>
-
-        <p>This is the neuroscience gap. Not a gap in our data, but a gap between data and meaning. Between mechanism and experience. Between the third-person objective and the first-person subjective.</p>
-      </section>
-
-      <section id="philosophy">
-        <h2>Philosophy Catches Up</h2>
-
-        <p>For a long time, analytic philosophy tried to dissolve the hard problem rather than solve it. Functionalists argued that consciousness just <em>is</em> the functional organization of information processing — if the right computations happen, experience follows automatically. Eliminativists argued that our folk-psychological notion of consciousness is simply confused, and that a mature neuroscience will have no use for it.</p>
-
-        <p>These positions have not disappeared. But they have been joined — and in many cases challenged — by a new wave of thinking that takes the phenomenological data seriously. Integrated Information Theory. Global Workspace Theory. Predictive Processing. Higher-Order Theories. Each is a serious attempt to bridge the gap, not explain it away.</p>
-
-        <div class="callout">
-          <div class="callout-icon">✦</div>
-          <div class="callout-text">The most promising contemporary theories don't try to reduce consciousness to something else. They try to <strong>characterize the conditions under which it arises</strong> — which is a subtly but importantly different project.</div>
-        </div>
-
-        <p>What's remarkable is how much these theories now depend on empirical evidence. Philosophy of mind has become a genuinely collaborative enterprise with neuroscience — not subordinate to it, but deeply entangled with it.</p>
-      </section>
-
-      <section id="lived">
-        <h2>Lived Experience as Data</h2>
-
-        <p>Perhaps the most radical development is the rehabilitation of first-person data. For much of the 20th century, the subjective report was treated as scientifically suspect — too unreliable, too private, too unverifiable. The behaviorist tradition wanted to purge it entirely from psychological science.</p>
-
-        <p>That project failed, and its failure is instructive. You cannot build a complete account of mind by studying only behavior. At some point you have to deal with the fact that humans — and perhaps many other creatures — have an inside as well as an outside.</p>
-
-        <p>The rise of contemplative neuroscience is one sign of this shift. Researchers like Richie Davidson and Clifford Saron have conducted rigorous studies of long-term meditators, and what they've found is that sustained first-person practice produces measurable, reproducible changes in brain structure and function. The subjective and objective are not separate — they are two angles on the same phenomenon.</p>
-      </section>
-
-      <section id="convergence">
-        <h2>Where They Converge</h2>
-
-        <p>The most exciting frontier right now is the space where all three traditions meet. Not philosophy alone, not neuroscience alone, not phenomenology alone — but the triangulation of all three.</p>
-
-        <p>Consider the question of the self. Neuroscience tells us that there is no single "self center" in the brain — the sense of unified selfhood emerges from a dynamic, distributed process that is perpetually reconstructed. Philosophy tells us that the metaphysics of personal identity is deeply puzzling, and that our intuitions about it are unreliable. Phenomenology tells us that the felt sense of self varies enormously — it can be disrupted by meditation, drugs, neurological damage, or simply by paying very close attention.</p>
-
-        <div class="post-image-wrap">
-          <div class="post-image"></div>
-          <p class="image-caption">The Default Mode Network — active during self-referential thought — is one of the most studied regions in consciousness research.</p>
-        </div>
-
-        <p>Put these three strands together and what you get is not a solution to the problem of self, but a far richer, more textured understanding of what the problem actually is. And that is genuine progress.</p>
-      </section>
-
-      <section id="conclusion">
-        <h2>A New Understanding</h2>
-
-        <p>We are not close to solving the hard problem. I want to be clear about that. Anyone who tells you otherwise is either confused or selling something.</p>
-
-        <p>But we are in the middle of something remarkable: a genuine expansion of our conceptual vocabulary for talking about consciousness. New frameworks are being built. Old certainties are being questioned. Disciplines that once barely spoke to each other are finding common ground.</p>
-
-        <p>That peculiar vertigo — the one that comes from thinking about your own thinking — is not going away. But perhaps that is the point. Perhaps the discomfort of self-reflection is not a bug in the system but a feature: the marker of a mind genuinely engaged with the mystery of its own existence.</p>
-
-        <p class="closing">In the expanding universe of human consciousness, we are all still learning to see.</p>
-      </section>
-
-      <!-- TAGS -->
-      <div class="post-tags">
-        <span class="post-tag-item">Philosophy</span>
-        <span class="post-tag-item">Neuroscience</span>
-        <span class="post-tag-item">Consciousness</span>
-        <span class="post-tag-item">Science</span>
-        <span class="post-tag-item">Psychology</span>
+      <div id="postBodyContent">
+        <section id="loading">
+          <p class="lead">Loading the story body...</p>
+        </section>
       </div>
 
-      <!-- AUTHOR CARD -->
+      <div class="post-tags" id="postTags"></div>
+
       <div class="author-card">
-        <div class="author-card-avatar">AR</div>
+        <div class="author-card-avatar" id="authorCardAvatar">HB</div>
         <div class="author-card-body">
-          <div class="author-card-name">Aryan Mehta</div>
-          <div class="author-card-bio">Writer at the intersection of science, philosophy, and lived experience. Based in Mumbai. Interested in consciousness, complexity, and the limits of understanding.</div>
+          <div class="author-card-name" id="authorCardName">Horizon</div>
+          <div class="author-card-bio" id="authorCardBio">Loading author details...</div>
           <div class="author-card-stats">
-            <span>24 stories</span>
+            <span id="authorCardStories">0 stories</span>
             <div class="dot"></div>
-            <span>12.4k readers</span>
+            <span id="authorCardReaders">0 followers</span>
           </div>
         </div>
-        <button class="btn-follow">Follow</button>
+        <button class="btn-follow" id="followBtn">Follow</button>
       </div>
 
-      <!-- POST NAV -->
-      <div class="post-nav">
-        <div class="post-nav-item prev">
-          <div class="post-nav-label">← Previous</div>
-          <div class="post-nav-title">Dark Matter & the Stories We Tell About the Unknown</div>
-        </div>
-        <div class="post-nav-item next">
-          <div class="post-nav-label">Next →</div>
-          <div class="post-nav-title">Building with AI: A Human's Perspective</div>
-        </div>
+      <div class="post-nav" id="postNav">
+        <a class="post-nav-item prev" href="blog.html" style="text-decoration:none;color:inherit;">
+          <div class="post-nav-label">&lt;- Explore</div>
+          <div class="post-nav-title">Return to all stories</div>
+        </a>
       </div>
-
     </article>
 
-    <!-- RIGHT: sticky sidebar -->
     <aside class="post-sidebar">
-
-      <!-- More from author -->
       <div class="sidebar-card">
-        <div class="sidebar-title">More by Aryan</div>
-        <div class="related-list">
-          <div class="related-item">
-            <div class="related-thumb thumb-b"></div>
-            <div class="related-text">
-              <div class="related-title">The Illusion of Rational Choice</div>
-              <div class="related-meta">6 min read</div>
-            </div>
-          </div>
-          <div class="related-item">
-            <div class="related-thumb thumb-e"></div>
-            <div class="related-text">
-              <div class="related-title">Stoicism in the Age of Algorithms</div>
-              <div class="related-meta">5 min read</div>
-            </div>
-          </div>
-          <div class="related-item">
-            <div class="related-thumb thumb-g"></div>
-            <div class="related-text">
-              <div class="related-title">What Silence Teaches Us</div>
-              <div class="related-meta">4 min read</div>
-            </div>
-          </div>
-        </div>
+        <div class="sidebar-title" id="moreByTitle">More by this author</div>
+        <div class="related-list" id="moreByAuthorList"></div>
       </div>
 
-      <!-- Related posts -->
       <div class="sidebar-card">
         <div class="sidebar-title">Related Stories</div>
-        <div class="related-list">
-          <div class="related-item">
-            <div class="related-thumb thumb-a"></div>
-            <div class="related-text">
-              <div class="related-title">In Defense of Daydreaming</div>
-              <div class="related-meta">Psychology · 5 min</div>
-            </div>
-          </div>
-          <div class="related-item">
-            <div class="related-thumb thumb-c"></div>
-            <div class="related-text">
-              <div class="related-title">Mapping the Silence Between Stars</div>
-              <div class="related-meta">Science · 5 min</div>
-            </div>
-          </div>
-        </div>
+        <div class="related-list" id="relatedStoriesList"></div>
       </div>
 
-      <!-- Share -->
       <div class="sidebar-card share-card">
         <div class="sidebar-title">Share this story</div>
         <div class="share-btns">
-          <button class="share-btn">𝕏 Twitter</button>
-          <button class="share-btn">in LinkedIn</button>
-          <button class="share-btn" id="copyLinkBtn">⌗ Copy link</button>
+          <button class="share-btn" id="shareTwitterBtn">Twitter</button>
+          <button class="share-btn" id="shareLinkedinBtn">LinkedIn</button>
+          <button class="share-btn" id="copyLinkBtn">Copy link</button>
         </div>
       </div>
-
     </aside>
+  </div>
+</div>
 
-  </div><!-- /post-layout -->
-
-</div><!-- /page-post -->
-
-<!-- Scripts -->
-<script src="js/post.js"></script>
-
+<script src="../js/api.js"></script>
+<script src="../js/blog_slug.js"></script>
 </body>
 </html>

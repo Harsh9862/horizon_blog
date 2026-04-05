@@ -1,13 +1,17 @@
-const form = document.getElementById('register-form');
+if (isAuthenticated()) {
+  window.location.href = resolvePostAuthRedirect('home.html');
+}
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+const registerForm = document.getElementById('register-form');
 
-  const name     = document.getElementById('name').value.trim();
-  const email    = document.getElementById('email').value.trim();
+registerForm.addEventListener('submit', async function (event) {
+  event.preventDefault();
+
+  const displayName = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim().toLowerCase();
   const password = document.getElementById('password').value;
 
-  if (!name || !email || !password) {
+  if (!displayName || !email || !password) {
     alert('Please fill in all fields.');
     return;
   }
@@ -17,8 +21,29 @@ form.addEventListener('submit', function (e) {
     return;
   }
 
-  // Replace this with your actual registration logic (e.g. fetch/API call)
-  console.log('Registering:', { name, email });
-  alert(`Welcome, ${name}! Your account has been created.`);
-  form.reset();
+  const submitButton = registerForm.querySelector('button[type="submit"]');
+  const originalLabel = submitButton.textContent;
+
+  try {
+    submitButton.disabled = true;
+    submitButton.textContent = 'Creating account...';
+
+    const authResponse = await apiFetch('/auth/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        username: deriveUsername(displayName, email),
+        email,
+        password,
+        displayName
+      })
+    });
+
+    setSession(authResponse);
+    window.location.href = resolvePostAuthRedirect('home.html');
+  } catch (error) {
+    alert(error.message || 'Unable to create account.');
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = originalLabel;
+  }
 });
