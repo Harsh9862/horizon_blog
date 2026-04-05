@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Blog Story</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/blog_slug.css"/>
+  <style>
+    .ai-story-card {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7, 12, 26, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px);
+    }
+
+    .ai-story-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(232, 237, 245, 0.68);
+      margin-bottom: 12px;
+    }
+
+    .ai-story-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .ai-story-btn {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e8edf5;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .ai-story-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .ai-story-output {
+      color: rgba(232, 237, 245, 0.82);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<nav>
+  <a class="nav-logo" href="home.html">H<span>O</span>RIZON</a>
+  <div class="nav-links">
+    <a class="nav-link" href="home.html">Home</a>
+    <a class="nav-link" href="blog.html">Explore</a>
+    <a class="nav-link" href="write.html">Write</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<div id="page-post">
+  <div class="post-hero">
+    <div class="post-hero-inner">
+      <div class="breadcrumb">
+        <a href="blog.html">Explore</a>
+        <span>&gt;</span>
+        <span id="breadcrumbCategory">Story</span>
+      </div>
+      <span class="post-tag" id="heroCategory">Story</span>
+      <h1 id="postTitle">Loading story...</h1>
+      <p class="post-subtitle" id="postSubtitle">Fetching the latest post content.</p>
+
+      <div class="post-byline">
+        <div class="author-avatar" id="authorAvatar">HB</div>
+        <div class="author-info">
+          <div class="author-name" id="authorName">Horizon</div>
+          <div class="author-meta" id="authorMeta">Loading metadata...</div>
+        </div>
+        <div class="post-actions">
+          <button class="action-btn" id="likeBtn" title="Like">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span id="likeCount">0</span>
+          </button>
+          <button class="action-btn" id="bookmarkBtn" title="Bookmark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </button>
+          <button class="action-btn" id="shareBtn" title="Share">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="post-hero-img">
+      <div class="hero-img-overlay" id="heroImage"></div>
+    </div>
+  </div>
+
+  <div class="post-layout">
+    <aside class="toc-sidebar" id="toc">
+      <div class="toc-label">In this article</div>
+      <nav class="toc-list" id="tocList"></nav>
+      <div class="toc-progress">
+        <div class="toc-progress-fill" id="tocProgress"></div>
+      </div>
+    </aside>
+
+    <article class="post-body" id="articleBody">
+      <div id="postBodyContent">
+        <section id="loading">
+          <p class="lead">Loading the story body...</p>
+        </section>
+      </div>
+
+      <div class="post-tags" id="postTags"></div>
+
+      <div class="author-card">
+        <div class="author-card-avatar" id="authorCardAvatar">HB</div>
+        <div class="author-card-body">
+          <div class="author-card-name" id="authorCardName">Horizon</div>
+          <div class="author-card-bio" id="authorCardBio">Loading author details...</div>
+          <div class="author-card-stats">
+            <span id="authorCardStories">0 stories</span>
+            <div class="dot"></div>
+            <span id="authorCardReaders">0 followers</span>
+          </div>
+        </div>
+        <button class="btn-follow" id="followBtn">Follow</button>
+      </div>
+
+      <div class="post-nav" id="postNav">
+        <a class="post-nav-item prev" href="blog.html" style="text-decoration:none;color:inherit;">
+          <div class="post-nav-label">&lt;- Explore</div>
+          <div class="post-nav-title">Return to all stories</div>
+        </a>
+      </div>
+    </article>
+
+    <aside class="post-sidebar">
+      <div class="ai-story-card">
+        <div class="ai-story-title">AI Insights</div>
+        <div class="ai-story-actions">
+          <button class="ai-story-btn" id="aiSummaryBtn" type="button">Summarize</button>
+          <button class="ai-story-btn" id="aiRecommendBtn" type="button">Refresh Recommendations</button>
+        </div>
+        <div class="ai-story-output" id="aiStoryOutput">Summarize this story or refresh related reads with AI.</div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title" id="moreByTitle">More by this author</div>
+        <div class="related-list" id="moreByAuthorList"></div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Related Stories</div>
+        <div class="related-list" id="relatedStoriesList"></div>
+      </div>
+
+      <div class="sidebar-card share-card">
+        <div class="sidebar-title">Share this story</div>
+        <div class="share-btns">
+          <button class="share-btn" id="shareTwitterBtn">Twitter</button>
+          <button class="share-btn" id="shareLinkedinBtn">LinkedIn</button>
+          <button class="share-btn" id="copyLinkBtn">Copy link</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/blog_slug.js"></script>
+</body>
+</html>

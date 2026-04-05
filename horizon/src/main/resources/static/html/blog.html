@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Horizon Blog - Explore</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/blog.css"/>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<nav>
+  <a class="nav-logo" href="home.html">H<span>O</span>RIZON</a>
+  <div class="nav-links">
+    <a class="nav-link" href="home.html">Home</a>
+    <a class="nav-link active" href="blog.html">Explore</a>
+    <a class="nav-link" href="write.html">Write</a>
+    <a class="nav-link" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<div id="page-blog">
+  <div class="page-header">
+    <div>
+      <div class="page-tag">All Stories</div>
+      <h1>Explore the <em>horizon</em><br/>of thoughts.</h1>
+      <p>Curated writing from curious minds, powered entirely by the live backend.</p>
+    </div>
+    <div class="post-count-badge">--</div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+      <input class="search-input" type="text" placeholder="Search stories..." id="searchInput"/>
+    </div>
+
+    <div class="filter-pills">
+      <button class="pill active" data-filter="all">All</button>
+      <button class="pill" data-filter="Philosophy">Philosophy</button>
+      <button class="pill" data-filter="Technology">Technology</button>
+      <button class="pill" data-filter="Science">Science</button>
+      <button class="pill" data-filter="Culture">Culture</button>
+      <button class="pill" data-filter="Nature">Nature</button>
+      <button class="pill" data-filter="Psychology">Psychology</button>
+    </div>
+
+    <select class="sort-select" id="sortSelect">
+      <option>Latest</option>
+      <option>Most Read</option>
+      <option>Trending</option>
+    </select>
+  </div>
+
+  <div class="blog-layout">
+    <div>
+      <div class="featured-post" id="featuredPost">
+        <span class="featured-label">Featured</span>
+        <span class="post-tag">Loading</span>
+        <h2>Fetching the featured story...</h2>
+        <p>The explore page is waiting for live data from the backend.</p>
+      </div>
+
+      <div class="results-row">
+        <div class="results-count">Showing <strong id="countDisplay">0</strong> live stories</div>
+      </div>
+
+      <div class="posts-list" id="postsList">
+        <div class="post-row">
+          <div class="post-row-num">..</div>
+          <div class="post-row-thumb thumb-a"></div>
+          <div class="post-row-content">
+            <div class="post-row-title">Loading stories...</div>
+            <div class="post-row-meta">Content will appear here once the API responds.</div>
+          </div>
+          <div class="post-row-right">
+            <span class="post-row-tag">Live</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination">
+        <button class="page-btn active">Live</button>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card newsletter-card">
+        <h3>Stay on the Horizon</h3>
+        <p>New stories, no noise. Delivered to your inbox every week.</p>
+        <input class="newsletter-input" type="email" placeholder="your@email.com"/>
+        <button class="btn-subscribe">Subscribe</button>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Trending This Week</div>
+        <div class="trending-list" id="trendingList">
+          <div class="trending-item">
+            <span class="trending-num">..</span>
+            <div class="trending-text">
+              <h4>Loading trending stories...</h4>
+              <span>Please wait</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-card">
+        <div class="sidebar-title">Browse Tags</div>
+        <div class="tag-cloud" id="tagCloud">
+          <span class="tag">Loading</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/blog.js"></script>
+
+</body>
+</html>

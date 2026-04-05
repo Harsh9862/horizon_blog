@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Write - Horizon Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/write.css"/>
+  <style>
+    .ai-panel {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 28px;
+    }
+
+    .ai-card {
+      background: rgba(7, 12, 26, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px);
+    }
+
+    .ai-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .ai-title {
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(232, 237, 245, 0.72);
+    }
+
+    .ai-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ai-btn {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e8edf5;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .ai-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .ai-output {
+      min-height: 44px;
+      color: rgba(232, 237, 245, 0.82);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .ai-helper {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(232, 237, 245, 0.58);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<nav>
+  <div class="nav-logo">H<span>O</span>RIZON</div>
+  <div class="nav-center">
+    <span class="draft-status" id="draftStatus">Ready to write</span>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost" id="saveDraftBtn" type="button">Save Draft</button>
+    <button class="btn-ghost" id="previewBtn" type="button">Preview</button>
+    <button class="btn-primary" id="publishBtn" type="button">Publish</button>
+    <a class="nav-link" href="dashboard.html">Close</a>
+  </div>
+</nav>
+
+<div id="page-write">
+  <div class="ai-panel">
+    <div class="ai-card">
+      <div class="ai-head">
+        <div class="ai-title">AI Writing Assistant</div>
+        <div class="ai-actions">
+          <button class="ai-btn" id="aiImproveBtn" type="button">Improve Body</button>
+          <button class="ai-btn" id="aiSubtitleBtn" type="button">Generate Subtitle</button>
+          <button class="ai-btn" id="aiTagsBtn" type="button">Suggest Tags</button>
+        </div>
+      </div>
+      <div class="ai-output" id="aiWriteOutput">Use AI to refine your draft without leaving the editor.</div>
+      <div class="ai-helper">Improve rewrites the story body, subtitle fills the subtitle field, and tags appends up to 5 suggestions.</div>
+    </div>
+  </div>
+
+  <div class="cover-zone" id="coverZone">
+    <div class="cover-placeholder" id="coverPlaceholder">
+      <div class="cover-icon">+</div>
+      <span>Add cover image</span>
+    </div>
+    <div class="cover-img" id="coverImg" style="display:none"></div>
+    <button class="cover-remove" id="coverRemove" style="display:none">Remove</button>
+    <input type="file" id="coverInput" accept="image/*" style="display:none"/>
+  </div>
+
+  <div class="editor-wrap">
+    <div class="meta-fields">
+      <div class="category-select-wrap">
+        <select class="category-select" id="categorySelect">
+          <option value="" disabled selected>Select a category...</option>
+        </select>
+      </div>
+      <div class="tags-input-wrap">
+        <input type="text" class="tags-input" id="tagsInput" placeholder="Add tags and press Enter"/>
+        <div class="tags-list" id="tagsList"></div>
+      </div>
+    </div>
+
+    <div
+      class="title-field"
+      id="titleField"
+      contenteditable="true"
+      data-placeholder="Your story title..."
+    ></div>
+
+    <div
+      class="subtitle-field"
+      id="subtitleField"
+      contenteditable="true"
+      data-placeholder="Write a compelling subtitle..."
+    ></div>
+
+    <div class="toolbar" id="toolbar">
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="bold" title="Bold"><b>B</b></button>
+        <button class="tool-btn" data-cmd="italic" title="Italic"><i>I</i></button>
+        <button class="tool-btn" data-cmd="underline" title="Underline"><u>U</u></button>
+        <button class="tool-btn" data-cmd="strikeThrough" title="Strikethrough"><s>S</s></button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="h2" title="Heading 2">H2</button>
+        <button class="tool-btn" data-cmd="h3" title="Heading 3">H3</button>
+        <button class="tool-btn" data-cmd="blockquote" title="Blockquote">"</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="insertUnorderedList" title="Bullet list">List</button>
+        <button class="tool-btn" data-cmd="insertOrderedList" title="Numbered list">1.</button>
+        <button class="tool-btn" data-cmd="insertHorizontalRule" title="Divider">Rule</button>
+      </div>
+      <div class="toolbar-divider"></div>
+      <div class="toolbar-group">
+        <button class="tool-btn" data-cmd="createLink" title="Add link">Link</button>
+        <button class="tool-btn" data-cmd="removeFormat" title="Clear format">Clear</button>
+      </div>
+      <div class="toolbar-spacer"></div>
+      <div class="word-count" id="wordCount">0 words</div>
+    </div>
+
+    <div
+      class="body-editor"
+      id="bodyEditor"
+      contenteditable="true"
+      data-placeholder="Begin your story..."
+    ></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="publishModal" style="display:none">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Ready to publish?</h2>
+      <p>Review your story settings before going live.</p>
+    </div>
+
+    <div class="modal-preview">
+      <div class="modal-preview-img" id="modalPreviewImg"></div>
+      <div class="modal-preview-text">
+        <div class="modal-preview-title" id="modalTitle">Untitled</div>
+        <div class="modal-preview-sub" id="modalSubtitle">No subtitle</div>
+        <div class="modal-preview-meta" id="modalMeta">0 min read | Draft</div>
+      </div>
+    </div>
+
+    <div class="modal-field">
+      <label>Category</label>
+      <select class="modal-select" id="modalCategory">
+        <option value="" disabled selected>Select...</option>
+      </select>
+    </div>
+
+    <div class="modal-field">
+      <label>Visibility</label>
+      <div class="visibility-options">
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="public" checked/>
+          <span>Public</span>
+        </label>
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="members"/>
+          <span>Members only</span>
+        </label>
+        <label class="vis-option">
+          <input type="radio" name="visibility" value="private"/>
+          <span>Private</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-ghost" id="cancelPublish" type="button">Cancel</button>
+      <button class="btn-primary" id="confirmPublish" type="button">Publish now</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/write.js"></script>
+</body>
+</html>

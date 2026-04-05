@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - Horizon Blog</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/dashboard.css"/>
+</head>
+<body>
+
+<canvas id="stars-canvas"></canvas>
+<div class="aurora"></div>
+
+<nav>
+  <a class="nav-logo" href="home.html">H<span>O</span>RIZON</a>
+  <div class="nav-links">
+    <a class="nav-link" href="home.html">Home</a>
+    <a class="nav-link" href="blog.html">Explore</a>
+    <a class="nav-link active" href="dashboard.html">Dashboard</a>
+    <a class="nav-cta" href="write.html">+ New Post</a>
+  </div>
+</nav>
+
+<div id="page-dashboard">
+  <div class="profile-header">
+    <div class="profile-header-inner">
+      <div class="profile-avatar" id="profileAvatar">HB</div>
+      <div class="profile-info">
+        <div class="profile-name" id="profileName">Loading...</div>
+        <div class="profile-handle" id="profileHandle">@user</div>
+        <div class="profile-bio" id="profileBio">Fetching profile details...</div>
+      </div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-num" id="storiesStat">0</div><div class="pstat-label">Stories</div></div>
+        <div class="pstat"><div class="pstat-num" id="readersStat">0</div><div class="pstat-label">Readers</div></div>
+        <div class="pstat"><div class="pstat-num" id="likesStat">0</div><div class="pstat-label">Likes</div></div>
+        <div class="pstat"><div class="pstat-num" id="viewsStat">0</div><div class="pstat-label">Views</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dash-layout">
+    <aside class="dash-nav">
+      <button class="dash-nav-item active" data-tab="posts"><span class="dash-nav-icon">List</span> My Posts</button>
+      <button class="dash-nav-item" data-tab="analytics"><span class="dash-nav-icon">Chart</span> Analytics</button>
+      <button class="dash-nav-item" data-tab="drafts"><span class="dash-nav-icon">Draft</span> Drafts <span class="badge" id="draftCountBadge">0</span></button>
+      <button class="dash-nav-item" data-tab="bookmarks"><span class="dash-nav-icon">Save</span> Bookmarks</button>
+      <div class="dash-nav-divider"></div>
+      <button class="dash-nav-item" data-tab="settings"><span class="dash-nav-icon">Settings</span> Settings</button>
+    </aside>
+
+    <main class="dash-main">
+      <div class="tab-panel active" id="tab-posts">
+        <div class="panel-header">
+          <h2>My Posts</h2>
+          <a href="write.html" class="btn-primary">+ New Post</a>
+        </div>
+        <div class="posts-filter">
+          <button class="filter-pill active" data-filter="all">All</button>
+          <button class="filter-pill" data-filter="published">Published</button>
+          <button class="filter-pill" data-filter="draft">Drafts</button>
+        </div>
+        <div class="posts-table">
+          <div class="posts-table-head">
+            <span>Story</span>
+            <span>Status</span>
+            <span>Views</span>
+            <span>Likes</span>
+            <span>Date</span>
+            <span></span>
+          </div>
+          <div id="dashboardPostsList"></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-analytics">
+        <div class="panel-header"><h2>Analytics</h2></div>
+        <div class="analytics-cards">
+          <div class="analytics-card"><div class="ac-label">Total Views</div><div class="ac-num" id="analyticsViews">0</div><div class="ac-change positive">Live from your dashboard</div></div>
+          <div class="analytics-card"><div class="ac-label">Total Likes</div><div class="ac-num" id="analyticsLikes">0</div><div class="ac-change positive">Live from your dashboard</div></div>
+          <div class="analytics-card"><div class="ac-label">New Followers</div><div class="ac-num" id="analyticsFollowers">0</div><div class="ac-change positive">Live from your dashboard</div></div>
+          <div class="analytics-card"><div class="ac-label">Avg. Read Time</div><div class="ac-num" id="analyticsReadTime">0m</div><div class="ac-change neutral">Based on published stories</div></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Views - Last 7 Days</div></div>
+          <div class="bar-chart" id="viewsChart"></div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-header"><div class="chart-title">Top Performing Posts</div></div>
+          <div class="top-posts" id="topPostsList"></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-drafts">
+        <div class="panel-header">
+          <h2>Drafts</h2>
+          <a href="write.html" class="btn-primary">+ New Post</a>
+        </div>
+        <div class="drafts-grid" id="draftsGrid"></div>
+      </div>
+
+      <div class="tab-panel" id="tab-bookmarks">
+        <div class="panel-header"><h2>Bookmarks</h2></div>
+        <div class="posts-table">
+          <div class="posts-table-head">
+            <span>Story</span><span>Author</span><span>Category</span><span>Saved</span><span></span>
+          </div>
+          <div id="bookmarksList"></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-settings">
+        <div class="panel-header"><h2>Settings</h2></div>
+        <div class="settings-grid">
+          <div class="settings-card">
+            <div class="settings-section-title">Profile</div>
+            <div class="settings-field">
+              <label>Display Name</label>
+              <input type="text" class="settings-input" id="settingsDisplayName" value=""/>
+            </div>
+            <div class="settings-field">
+              <label>Username</label>
+              <input type="text" class="settings-input" id="settingsUsername" value="" disabled/>
+            </div>
+            <div class="settings-field">
+              <label>Bio</label>
+              <textarea class="settings-input settings-textarea" id="settingsBio"></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
+              <button class="btn-primary" id="settingsSaveBtn">Save Changes</button>
+              <button class="btn-ghost" id="logoutBtn" type="button">Sign Out</button>
+            </div>
+          </div>
+
+          <div class="settings-card">
+            <div class="settings-section-title">Notifications</div>
+            <div class="toggle-row">
+              <div class="toggle-info"><div class="toggle-label">New followers</div><div class="toggle-desc">Get notified when someone follows you</div></div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><div class="toggle-label">Story likes</div><div class="toggle-desc">Get notified when someone likes your post</div></div>
+              <label class="toggle"><input type="checkbox" checked/><span class="toggle-slider"></span></label>
+            </div>
+            <div class="toggle-row">
+              <div class="toggle-info"><div class="toggle-label">Weekly digest</div><div class="toggle-desc">A weekly summary of your performance</div></div>
+              <label class="toggle"><input type="checkbox"/><span class="toggle-slider"></span></label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/dashboard.js"></script>
+</body>
+</html>
