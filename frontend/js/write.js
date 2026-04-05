@@ -28,6 +28,10 @@ const cancelPublish = document.getElementById('cancelPublish');
 const confirmPublish = document.getElementById('confirmPublish');
 const categorySelect = document.getElementById('categorySelect');
 const modalCategorySelect = document.getElementById('modalCategory');
+const aiWriteOutput = document.getElementById('aiWriteOutput');
+const aiImproveBtn = document.getElementById('aiImproveBtn');
+const aiSubtitleBtn = document.getElementById('aiSubtitleBtn');
+const aiTagsBtn = document.getElementById('aiTagsBtn');
 
 function resize() {
   canvas.width = window.innerWidth;
@@ -112,6 +116,12 @@ function updateModalPreview() {
 
   if (categorySelect.value) {
     modalCategorySelect.value = categorySelect.value;
+  }
+}
+
+function setAiWriteMessage(message) {
+  if (aiWriteOutput) {
+    aiWriteOutput.textContent = message;
   }
 }
 
@@ -264,6 +274,75 @@ async function handlePublish() {
   }
 }
 
+async function runAiAction(button, action) {
+  const original = button.textContent;
+  button.disabled = true;
+  setAiWriteMessage('Thinking...');
+  try {
+    await action();
+  } catch (error) {
+    setAiWriteMessage(error.message || 'AI request failed.');
+  } finally {
+    button.disabled = false;
+    button.textContent = original;
+  }
+}
+
+async function improveBodyWithAi() {
+  const text = bodyEditor.innerText.trim();
+  if (!text) {
+    setAiWriteMessage('Write a little body content first.');
+    return;
+  }
+
+  const response = await apiFetch('/ai/improve-writing', {
+    method: 'POST',
+    body: JSON.stringify({ text })
+  });
+
+  bodyEditor.innerHTML = `<p>${String(response.text || '').replace(/\n{2,}/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
+  updateWordCount();
+  markUnsaved();
+  setAiWriteMessage('Body improved. Review the result before saving.');
+}
+
+async function generateSubtitleWithAi() {
+  const title = titleField.innerText.trim();
+  const body = bodyEditor.innerText.trim();
+  if (!title || !body) {
+    setAiWriteMessage('Add a title and some body content first.');
+    return;
+  }
+
+  const response = await apiFetch('/ai/generate-subtitle', {
+    method: 'POST',
+    body: JSON.stringify({ title, body })
+  });
+
+  subtitleField.innerText = response.subtitle || '';
+  markUnsaved();
+  setAiWriteMessage('Subtitle generated and inserted into the subtitle field.');
+}
+
+async function suggestTagsWithAi() {
+  const title = titleField.innerText.trim();
+  const body = bodyEditor.innerText.trim();
+  if (!title || !body) {
+    setAiWriteMessage('Add a title and body before asking for tags.');
+    return;
+  }
+
+  const response = await apiFetch('/ai/suggest-tags', {
+    method: 'POST',
+    body: JSON.stringify({ title, body })
+  });
+
+  const suggestedTags = Array.isArray(response.tags) ? response.tags : [];
+  suggestedTags.forEach(tag => addTag(String(tag).trim()));
+  renderTags();
+  setAiWriteMessage(suggestedTags.length ? `Added ${suggestedTags.length} suggested tags.` : 'No tags were suggested.');
+}
+
 function bindEditorInteractions() {
   coverPlaceholder.addEventListener('click', () => coverInput.click());
 
@@ -354,6 +433,9 @@ function bindEditorInteractions() {
   });
 
   saveDraftBtn.addEventListener('click', handleSaveDraft);
+  aiImproveBtn.addEventListener('click', () => runAiAction(aiImproveBtn, improveBodyWithAi));
+  aiSubtitleBtn.addEventListener('click', () => runAiAction(aiSubtitleBtn, generateSubtitleWithAi));
+  aiTagsBtn.addEventListener('click', () => runAiAction(aiTagsBtn, suggestTagsWithAi));
 
   publishBtn.addEventListener('click', () => {
     updateModalPreview();

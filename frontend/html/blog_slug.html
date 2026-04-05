@@ -6,6 +6,53 @@
   <title>Horizon Blog Story</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/blog_slug.css"/>
+  <style>
+    .ai-story-card {
+      margin-top: 24px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7, 12, 26, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px);
+    }
+
+    .ai-story-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(232, 237, 245, 0.68);
+      margin-bottom: 12px;
+    }
+
+    .ai-story-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+    }
+
+    .ai-story-btn {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e8edf5;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .ai-story-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .ai-story-output {
+      color: rgba(232, 237, 245, 0.82);
+      line-height: 1.75;
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
 
@@ -102,6 +149,15 @@
     </article>
 
     <aside class="post-sidebar">
+      <div class="ai-story-card">
+        <div class="ai-story-title">AI Insights</div>
+        <div class="ai-story-actions">
+          <button class="ai-story-btn" id="aiSummaryBtn" type="button">Summarize</button>
+          <button class="ai-story-btn" id="aiRecommendBtn" type="button">Refresh Recommendations</button>
+        </div>
+        <div class="ai-story-output" id="aiStoryOutput">Summarize this story or refresh related reads with AI.</div>
+      </div>
+
       <div class="sidebar-card">
         <div class="sidebar-title" id="moreByTitle">More by this author</div>
         <div class="related-list" id="moreByAuthorList"></div>

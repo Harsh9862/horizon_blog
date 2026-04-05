@@ -4,6 +4,9 @@ let stars = [];
 let currentPost = null;
 let currentAuthor = null;
 const currentUser = requireAuth(getCurrentPageReference());
+const aiStoryOutput = document.getElementById('aiStoryOutput');
+const aiSummaryBtn = document.getElementById('aiSummaryBtn');
+const aiRecommendBtn = document.getElementById('aiRecommendBtn');
 
 function resize() {
   canvas.width = window.innerWidth;
@@ -129,6 +132,12 @@ function renderRelatedList(elementId, posts) {
   `).join('');
 }
 
+function setAiStoryMessage(message) {
+  if (aiStoryOutput) {
+    aiStoryOutput.textContent = message;
+  }
+}
+
 function updateProgress() {
   const article = document.getElementById('articleBody');
   const progressBar = document.getElementById('progressBar');
@@ -242,6 +251,56 @@ function shareCurrentPage() {
   }
 }
 
+async function runAiStoryAction(button, action) {
+  const original = button.textContent;
+  button.disabled = true;
+  setAiStoryMessage('Thinking...');
+  try {
+    await action();
+  } catch (error) {
+    setAiStoryMessage(error.message || 'AI request failed.');
+  } finally {
+    button.disabled = false;
+    button.textContent = original;
+  }
+}
+
+async function summarizeCurrentPost() {
+  if (!currentPost) {
+    setAiStoryMessage('Load a post first.');
+    return;
+  }
+
+  const response = await apiFetch('/ai/summarize', {
+    method: 'POST',
+    body: JSON.stringify({ postId: currentPost.id })
+  });
+
+  setAiStoryMessage(response.summary || 'No summary available.');
+}
+
+async function refreshRecommendations() {
+  if (!currentPost) {
+    setAiStoryMessage('Load a post first.');
+    return;
+  }
+
+  const response = await apiFetch('/ai/reading-recommendation', {
+    method: 'POST',
+    body: JSON.stringify({ postId: currentPost.id })
+  });
+
+  const slugs = Array.isArray(response.slugs) ? response.slugs : [];
+  if (!slugs.length) {
+    setAiStoryMessage('No recommendations were returned.');
+    return;
+  }
+
+  const posts = await Promise.all(slugs.map(slug => apiFetch(`/posts/${encodeURIComponent(slug)}`)));
+  renderRelatedList('relatedStoriesList', posts.filter(post => post.slug !== currentPost.slug));
+  setAiStoryMessage(`Updated related stories using ${slugs.length} AI-selected recommendations.`);
+}
+
 async function loadPostPage() {
   const slug = getSlugFromQuery();
   if (!slug) {
@@ -262,8 +321,11 @@ async function loadPostPage() {
     renderAuthor(authorProfile);
     renderRelatedList('moreByAuthorList', (authorPosts.content || []).filter(item => item.slug !== post.slug));
     renderRelatedList('relatedStoriesList', (trendingPosts || []).filter(item => item.slug !== post.slug).slice(0, 3));
+    setAiStoryMessage('Summarize this story or refresh related reads with AI.');
     bindTocEvents();
     bindActions();
+    aiSummaryBtn.addEventListener('click', () => runAiStoryAction(aiSummaryBtn, summarizeCurrentPost));
+    aiRecommendBtn.addEventListener('click', () => runAiStoryAction(aiRecommendBtn, refreshRecommendations));
     syncLikeState();
     syncFollowState();
   } catch (error) {

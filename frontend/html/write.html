@@ -6,6 +6,71 @@
   <title>Write - Horizon Blog</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/write.css"/>
+  <style>
+    .ai-panel {
+      max-width: 1120px;
+      margin: 18px auto 0;
+      padding: 0 28px;
+    }
+
+    .ai-card {
+      background: rgba(7, 12, 26, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(18px);
+    }
+
+    .ai-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .ai-title {
+      font-size: 0.88rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(232, 237, 245, 0.72);
+    }
+
+    .ai-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .ai-btn {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e8edf5;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+    }
+
+    .ai-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .ai-output {
+      min-height: 44px;
+      color: rgba(232, 237, 245, 0.82);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .ai-helper {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(232, 237, 245, 0.58);
+    }
+  </style>
 </head>
 <body>
 
@@ -26,6 +91,21 @@
 </nav>
 
 <div id="page-write">
+  <div class="ai-panel">
+    <div class="ai-card">
+      <div class="ai-head">
+        <div class="ai-title">AI Writing Assistant</div>
+        <div class="ai-actions">
+          <button class="ai-btn" id="aiImproveBtn" type="button">Improve Body</button>
+          <button class="ai-btn" id="aiSubtitleBtn" type="button">Generate Subtitle</button>
+          <button class="ai-btn" id="aiTagsBtn" type="button">Suggest Tags</button>
+        </div>
+      </div>
+      <div class="ai-output" id="aiWriteOutput">Use AI to refine your draft without leaving the editor.</div>
+      <div class="ai-helper">Improve rewrites the story body, subtitle fills the subtitle field, and tags appends up to 5 suggestions.</div>
+    </div>
+  </div>
+
   <div class="cover-zone" id="coverZone">
     <div class="cover-placeholder" id="coverPlaceholder">
       <div class="cover-icon">+</div>

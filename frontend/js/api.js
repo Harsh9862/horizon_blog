@@ -1,4 +1,8 @@
-const API_BASE_URL = 'http://localhost:8081/api';
+const API_BASE_URL = window.HORIZON_API_BASE_URL
+  || localStorage.getItem('horizon.apiBaseUrl')
+  || (['localhost', '127.0.0.1'].includes(window.location.hostname)
+    ? 'http://localhost:8081/api'
+    : `${window.location.origin.replace(/\/$/, '')}/api`);
 const TOKEN_KEY = 'horizon.auth.token';
 const REFRESH_TOKEN_KEY = 'horizon.auth.refreshToken';
 const USER_KEY = 'horizon.auth.user';
@@ -100,10 +104,17 @@ async function apiFetchInternal(path, options = {}, allowRefresh = true) {
     headers.set('Authorization', `Bearer ${token}`);
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers
-  });
+  let response;
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers
+    });
+  } catch (error) {
+    throw new Error(
+      `Unable to reach the backend at ${API_BASE_URL}. Make sure the API is running and CORS allows ${window.location.origin}.`
+    );
+  }
 
   const contentType = response.headers.get('content-type') || '';
   const payload = contentType.includes('application/json')
